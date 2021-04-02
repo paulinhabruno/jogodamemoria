@@ -7,7 +7,7 @@ function flipCard() {
     if(lockBoard) return;
     if(this === firstCard) return;
 
-    this.classList.toggle('flip');
+    this.classList.add('flip');
     if(!hasFlippedCard) {
         hasFlippedCard = true;
         firstCard = this;
@@ -51,7 +51,12 @@ function resetBoard() {
     [firstCard, secondCard] = [null, null];
 }
 
-
+(function shufle() {
+    cards.forEach((card) => {
+        let randomPosition = Math.floor(Math.random() * 12);
+        card.style.order = randomPosition;
+    })
+})();
 
 cards.forEach((card) => {
     card.addEventListener('click', flipCard)
